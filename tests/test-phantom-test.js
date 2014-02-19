@@ -1,5 +1,10 @@
-console.log('foo')
+
 require('./test-phantom-test-required')
 
-if (typeof phantom !== 'undefined')
-    phantom.exit()
+describe('Describe', function () {
+    it('should exist', function () {
+        return true
+    })
+})
+
+// phantom.exit()
