@@ -21,6 +21,12 @@ Prepending a filename with a `-` sign runs that test in phantomjs
 node mocha-testrunner nodetest -phantomTest
 ```
 
+Filenames can also be _globs_
+
+```
+node mocha-testrunner 'tests/*'
+```
+
 PhantomJS tests require _PhantomJS_, and also require _Browserify_ to be
 installed as a global module.  PhantomJS tests can then be written in
 the same format as node tests.  There is currently no support for loading
