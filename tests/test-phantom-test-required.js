@@ -1,1 +1,5 @@
-console.log('bar')
+describe("Requires", function () {
+    it("should work!", function () {
+        return true
+    })
+})

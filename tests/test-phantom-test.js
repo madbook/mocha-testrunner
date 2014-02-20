@@ -1,10 +1,9 @@
 
-require('./test-phantom-test-required')
-
 describe('Describe', function () {
     it('should exist', function () {
         return true
     })
 })
 
-// phantom.exit()
+require('./test-phantom-test-required')
+require('./test-phantom-coffee.coffee')

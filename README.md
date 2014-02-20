@@ -21,8 +21,6 @@ Prepending a filename with a `+` sign runs that test in phantomjs
 node mocha-testrunner nodetest +phantomTest
 ```
 
-_IMPORTANT_ - phantom tests must explicitly call `phantom.exit()`
-
 PhantomJS tests require _PhantomJS_, and also require _Browserify_ to be
 installed as a global module.  PhantomJS tests can then be written in
 the same format as node tests.  There is currently no support for loading
@@ -31,6 +29,9 @@ tests via js.
 
 ## TODO
 
-+ find a proper mocha reporter to output to phantomjs console.log, or write one :(
-+ support on-the-fly compiling of coffeescript files (as the non-phantomjs tests do via coffeescript)
++ don't rely on global browserify, use browserify module!
 + externalize the browserify template
++  cleanup custom reporter, have console logs actually queue up and return a json object to the node environment for consistent formatting
++ only launch _one_ phantomjs instance to run all browser test cases in
++ package into a nice little command line tool
++ maybe make natively grunt/gulp friendly
