@@ -24,22 +24,23 @@ exports.run = function (fileList, done) {
             fileName = fileName.slice(1)
 
         var fileTypeMatch = fileTypes.some(function (elem) {
-            return (fileName.indexOf(elem) === fileName.length - elem.length)
+            var i = fileName.indexOf(elem)
+            return (i !== ~0 && i === fileName.length - elem.length)
         })
 
         if (!fileTypeMatch)
             fileTypes.some(function (elem) {
-                if (!fs.existsSync(__dirname + '/' + fileName + elem))
+                if (!fs.existsSync(fileName + elem))
                     return false
                 fileName += elem
                 return true
             })
 
-        if (fs.existsSync(__dirname + '/' + fileName)) {
+        if (fs.existsSync(fileName)) {
             if (phantomTest)
                 phantomTestList.push(fileName)
             else {
-                mocha.addFile(__dirname + '/' + fileName)
+                mocha.addFile(fileName)
                 nodeTestCount++
             }
         }
