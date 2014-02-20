@@ -29,7 +29,6 @@ tests via js.
 
 ## TODO
 
-+ don't rely on global browserify, use browserify module!
 + externalize the browserify template
 +  cleanup custom reporter
 + only launch _one_ phantomjs instance to run all browser test cases in
