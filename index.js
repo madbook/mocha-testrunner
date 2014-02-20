@@ -12,6 +12,7 @@ var fileTypes = ['.js', '.coffee', '.coffee.md', '.litcoffee']
 exports.run = function (fileList, done) {
     var mocha = new Mocha
     var phantomTestList = []
+    var nodeTestCount = 0
 
     fileList.forEach(function (file) {
         // allow passing in filenames w/o extension
@@ -37,24 +38,34 @@ exports.run = function (fileList, done) {
         if (fs.existsSync(__dirname + '/' + fileName)) {
             if (phantomTest)
                 phantomTestList.push(fileName)
-            else
+            else {
                 mocha.addFile(__dirname + '/' + fileName)
+                nodeTestCount++
+            }
         }
         else
             console.warn(file + ' not found, skipping')
 
     })
 
-    mocha.reporter('spec').ui('tdd').run(function (failures) {
-        function end () {
-            complete(failures, done)
-        }
+    if (nodeTestCount)
+        mocha.reporter('spec').ui('tdd').run(function (failures) {
+            function end () {
+                complete(failures, done)
+            }
 
-        if (!phantomTestList.length)
-            return end()
+            if (!phantomTestList.length)
+                return end()
 
-        return runPhantomTests(phantomTestList, end)
-    })
+            return runPhantomTests(phantomTestList, end)
+        })
+    else if (phantomTestList.length) {
+        mocha.reporter('spec').ui('tdd')
+        runPhantomTests(phantomTestList, done)
+    }
+    else
+        complete('no tests!', done)
+
 }
 
 if (!module.parent) {

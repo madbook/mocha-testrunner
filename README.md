@@ -31,7 +31,7 @@ tests via js.
 
 + don't rely on global browserify, use browserify module!
 + externalize the browserify template
-+  cleanup custom reporter, have console logs actually queue up and return a json object to the node environment for consistent formatting
++  cleanup custom reporter
 + only launch _one_ phantomjs instance to run all browser test cases in
 + package into a nice little command line tool
 + maybe make natively grunt/gulp friendly
