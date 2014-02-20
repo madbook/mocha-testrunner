@@ -99,6 +99,8 @@ function complete (failures, cb) {
 }
 
 function runPhantomTests (files, cb) {
+    return phantom.run(files, cb)
+
     var i = 0
     next()
 

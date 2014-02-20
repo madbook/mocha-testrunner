@@ -35,8 +35,6 @@ tests via js.
 
 ## TODO
 
-+ externalize the browserify template
-+  cleanup custom reporter
-+ only launch _one_ phantomjs instance to run all browser test cases in
++ cleanup custom reporter (its _ugly_)
 + package into a nice little command line tool
-+ maybe make natively grunt/gulp friendly
++ make test environments (node, phantomjs) plugins
