@@ -15,7 +15,7 @@ Running multiple tests
 node mocha-testrunner test1 test2 path/to/test3
 ```
 
-Prepending a filename with a `+` sign runs that test in phantomjs
+Prepending a filename with a `-` sign runs that test in phantomjs
 
 ```
 node mocha-testrunner nodetest +phantomTest

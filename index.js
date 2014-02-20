@@ -18,7 +18,7 @@ exports.run = function (fileList, done) {
         // allow passing in filenames w/o extension
         var fileName = file
 
-        var phantomTest = (fileName[0] === '+')
+        var phantomTest = (fileName[0] === '-')
 
         if (phantomTest)
             fileName = fileName.slice(1)
