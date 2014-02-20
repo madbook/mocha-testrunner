@@ -7,12 +7,22 @@ require('coffee-script/register')
 var Mocha = require('mocha')
 var fs = require('fs')
 var phantom = require('./lib/phantom')
+var glob = require('glob')
 var fileTypes = ['.js', '.coffee', '.coffee.md', '.litcoffee']
 
 exports.run = function (fileList, done) {
     var mocha = new Mocha
     var phantomTestList = []
     var nodeTestCount = 0
+
+    function process (fileName, phantomTest) {
+        if (phantomTest)
+            phantomTestList.push(fileName)
+        else {
+            mocha.addFile(fileName)
+            nodeTestCount++
+        }
+    }
 
     fileList.forEach(function (file) {
         // allow passing in filenames w/o extension
@@ -22,6 +32,13 @@ exports.run = function (fileList, done) {
 
         if (phantomTest)
             fileName = fileName.slice(1)
+
+        var globResults = glob.sync(fileName)
+
+        if (globResults.length)
+            return globResults.forEach(function (file) {
+                process(file, phantomTest)
+            })
 
         var fileTypeMatch = fileTypes.some(function (elem) {
             var i = fileName.indexOf(elem)
@@ -36,14 +53,8 @@ exports.run = function (fileList, done) {
                 return true
             })
 
-        if (fs.existsSync(fileName)) {
-            if (phantomTest)
-                phantomTestList.push(fileName)
-            else {
-                mocha.addFile(fileName)
-                nodeTestCount++
-            }
-        }
+        if (fs.existsSync(fileName))
+            process(fileName, phantomTest)
         else
             console.warn(file + ' not found, skipping')
 

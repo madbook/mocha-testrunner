@@ -1,6 +1,6 @@
 {
   "name": "mocha-testrunner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A test runner for mocha",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "mocha" : "*",
     "chai" : "*",
     "browserify" : "*",
-    "coffeeify" : "*"
+    "coffeeify" : "*",
+    "glob": "*"
   }
 }
