@@ -18,7 +18,7 @@ node mocha-testrunner test1 test2 path/to/test3
 Prepending a filename with a `-` sign runs that test in phantomjs
 
 ```
-node mocha-testrunner nodetest +phantomTest
+node mocha-testrunner nodetest -phantomTest
 ```
 
 PhantomJS tests require _PhantomJS_, and also require _Browserify_ to be
